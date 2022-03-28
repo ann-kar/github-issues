@@ -1,3 +1,8 @@
+export interface GithubSearchResponse {
+  total_count: number;
+  incomplete_results: boolean;
+  items: GithubUser[];
+}
 export interface GithubUser {
   login: string;
   id: number;
@@ -15,7 +20,7 @@ export interface GithubUser {
   repos_url: string;
   events_url: string;
   received_events_url: string;
-  type: Type;
+  type: GithubUserType;
   site_admin: boolean;
 }
 

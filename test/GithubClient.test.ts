@@ -1,18 +1,20 @@
-import fetch from "node-fetch";
-import { GithubUser } from "../interfaces/github";
 import { withRecording } from "./withRecording";
-
-class GithubClient {
-  async getUsers(): Promise<GithubUser[]> {
-    const response = await fetch("https://api.github.com/users");
-    return (await response.json()) as GithubUser[];
-  }
-}
+import { GithubClient } from "../api/GithubClient";
 
 describe("#getUsers", function () {
-  test("returns github users", async () => {
+  test("returns github users with correct perPage", async () => {
     return withRecording(__dirname, "users", async () => {
-      await expect(new GithubClient().getUsers()).resolves.toMatchSnapshot();
+      await expect(
+        new GithubClient().getUsers({ perPage: 10, page: 1 })
+      ).resolves.toMatchSnapshot();
+    });
+  });
+
+  test("returns github users with correct page", async () => {
+    return withRecording(__dirname, "users second page", async () => {
+      await expect(
+        new GithubClient().getUsers({ perPage: 10, page: 2 })
+      ).resolves.toMatchSnapshot();
     });
   });
 });
