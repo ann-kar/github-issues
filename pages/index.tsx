@@ -20,13 +20,11 @@ const Home: NextPage = () => {
   const [query, setQuery] = useState<string>("");
 
   useEffect(() => {
-    if (!data) {
-      new Search().search({}).then((res) => {
-        setData(res.items);
-        setMetadata(res.metadata);
-      });
-    }
-  }, [data]);
+    new Search().search({ query: query }).then((res) => {
+      setData(res.items);
+      setMetadata(res.metadata);
+    });
+  }, [query]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
@@ -59,9 +57,9 @@ const Home: NextPage = () => {
         return (
           <div className={styles.listItem}>
             {item.type === SearchResultType.User ? (
-              <User item={item} key={item.id} />
+              <User item={item} key={`user-${item.id}`} />
             ) : (
-              <Repository item={item} key={item.id} />
+              <Repository item={item} key={`repo-${item.id}`} />
             )}
           </div>
         );
