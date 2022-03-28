@@ -1,4 +1,9 @@
-import { IRepository, ISearchResponse, SearchResultType } from "../interfaces/search";
+import {
+  IRepository,
+  ISearchResponse,
+  IUser,
+  SearchResultType,
+} from "../interfaces/search";
 import { GithubClient } from "../api/GithubClient";
 
 export class GithubFacade {
@@ -15,10 +20,26 @@ export class GithubFacade {
         updatedAt: ghRepo.updated_at,
         id: ghRepo.id,
         starsCount: ghRepo.stargazers_count,
-        type: SearchResultType.Repository
+        type: SearchResultType.Repository,
       }));
+    const githubUsers = await this.client.getUsers(params);
+    const searchResultUsers: IUser[] = await Promise.all(
+      githubUsers.items.map(async (ghUser) => {
+        const userProfile = await this.client.getUser(ghUser.id.toString());
+        return {
+          name: userProfile.name,
+          id: userProfile.id,
+          username: userProfile.login,
+          avatar: userProfile.avatar_url,
+          location: userProfile.location,
+          type: SearchResultType.User,
+        };
+      })
+    );
     return {
-      items: searchResultRepositories,
+      items: [...searchResultRepositories, ...searchResultUsers]
+        .sort((left, right) => (left.id > right.id ? -1 : 1))
+        .slice(0, 10),
       metadata: {
         totalCount: 10,
         ...params,
