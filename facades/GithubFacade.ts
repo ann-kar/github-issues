@@ -10,6 +10,7 @@ export class GithubFacade {
   private readonly client = new GithubClient();
 
   async search(params: {
+    query: string;
     perPage: number;
     page: number;
   }): Promise<ISearchResponse> {

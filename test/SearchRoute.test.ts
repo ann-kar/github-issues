@@ -19,20 +19,12 @@ describe("SearchRoute", () => {
         Object {
           "items": Array [
             Object {
-              "avatar": "https://avatars.githubusercontent.com/u/86507453?v=4",
-              "id": 86507453,
+              "avatar": "https://avatars.githubusercontent.com/u/35774468?v=4",
+              "id": 35774468,
               "location": null,
               "name": null,
               "type": "User",
-              "username": "110953",
-            },
-            Object {
-              "description": "Mobile App Framework powered by React",
-              "id": 25205606,
-              "name": "touchstonejs",
-              "starsCount": 3350,
-              "type": "Repository",
-              "updatedAt": "2022-03-04T14:44:45Z",
+              "username": "25254",
             },
             Object {
               "description": "A tiny, lightning fast jQuery-like library for modern browsers.",
@@ -49,6 +41,14 @@ describe("SearchRoute", () => {
               "starsCount": 3755,
               "type": "Repository",
               "updatedAt": "2022-03-03T17:15:34Z",
+            },
+            Object {
+              "description": "A next-generation package manager for the front-end",
+              "id": 18609451,
+              "name": "duo",
+              "starsCount": 3459,
+              "type": "Repository",
+              "updatedAt": "2022-03-04T14:44:43Z",
             },
             Object {
               "description": ":scissors: A grunt task for removing unused CSS from your projects.",
@@ -102,6 +102,7 @@ describe("SearchRoute", () => {
           "metadata": Object {
             "page": 1,
             "perPage": 10,
+            "query": "",
             "totalCount": 10,
           },
         }

@@ -8,14 +8,15 @@ import {
 
 export class GithubClient {
   async getUsers(params: {
+    query: string;
     perPage: number;
     page: number;
   }): Promise<GithubUserSearchResponse> {
-    const { perPage, page } = params;
+    const { perPage, page, query } = params;
     const response = await fetch(
       "https://api.github.com/search/users?" +
         new URLSearchParams({
-          q: "type:user",
+          q: `type:user ${query}`,
           per_page: perPage.toString(),
           page: page.toString(),
         }),
@@ -27,14 +28,15 @@ export class GithubClient {
   }
 
   async getRepositories(params: {
+    query: string;
     perPage: number;
     page: number;
   }): Promise<GithubRepositorySearchResponse> {
-    const { perPage, page } = params;
+    const { perPage, page, query } = params;
     const response = await fetch(
       "https://api.github.com/search/repositories?" +
         new URLSearchParams({
-          q: "size:>0",
+          q: `size:>0 ${query}`,
           per_page: perPage.toString(),
           page: page.toString(),
         }),

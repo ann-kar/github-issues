@@ -6,7 +6,7 @@ describe("GithubClient", () => {
     test("returns github users with correct perPage", async () => {
       return withRecording(__dirname, "users", async () => {
         await expect(
-          new GithubClient().getUsers({ perPage: 10, page: 1 })
+          new GithubClient().getUsers({ query: "", perPage: 10, page: 1 })
         ).resolves.toMatchSnapshot();
       });
     });
@@ -14,7 +14,19 @@ describe("GithubClient", () => {
     test("returns github users with correct page", async () => {
       return withRecording(__dirname, "users second page", async () => {
         await expect(
-          new GithubClient().getUsers({ perPage: 10, page: 2 })
+          new GithubClient().getUsers({ query: "", perPage: 10, page: 2 })
+        ).resolves.toMatchSnapshot();
+      });
+    });
+
+    test("returns github users with correct page and query", async () => {
+      return withRecording(__dirname, "users queried page", async () => {
+        await expect(
+          new GithubClient().getUsers({
+            query: "michalwarda",
+            perPage: 10,
+            page: 1,
+          })
         ).resolves.toMatchSnapshot();
       });
     });
@@ -24,15 +36,35 @@ describe("GithubClient", () => {
     test("returns github repositories with correct perPage", async () => {
       return withRecording(__dirname, "repositories", async () => {
         await expect(
-          new GithubClient().getRepositories({ perPage: 10, page: 1 })
+          new GithubClient().getRepositories({
+            query: "",
+            perPage: 10,
+            page: 1,
+          })
         ).resolves.toMatchSnapshot();
       });
     });
 
-    test("returns github users with correct page", async () => {
+    test("returns github repositories with correct page", async () => {
       return withRecording(__dirname, "repositories second page", async () => {
         await expect(
-          new GithubClient().getUsers({ perPage: 10, page: 2 })
+          new GithubClient().getRepositories({
+            query: "",
+            perPage: 10,
+            page: 2,
+          })
+        ).resolves.toMatchSnapshot();
+      });
+    });
+
+    test("returns github repositories with correct query", async () => {
+      return withRecording(__dirname, "repositories queried page", async () => {
+        await expect(
+          new GithubClient().getRepositories({
+            query: "michalwarda",
+            perPage: 10,
+            page: 2,
+          })
         ).resolves.toMatchSnapshot();
       });
     });
