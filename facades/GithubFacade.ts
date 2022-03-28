@@ -1,4 +1,4 @@
-import { IRepository, ISearchResponse } from "../interfaces/search";
+import { IRepository, ISearchResponse, SearchResultType } from "../interfaces/search";
 import { GithubClient } from "../api/GithubClient";
 
 export class GithubFacade {
@@ -15,6 +15,7 @@ export class GithubFacade {
         updatedAt: ghRepo.updated_at,
         id: ghRepo.id,
         starsCount: ghRepo.stargazers_count,
+        type: SearchResultType.Repository
       }));
     return {
       items: searchResultRepositories,
