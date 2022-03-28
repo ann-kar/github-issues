@@ -7,15 +7,30 @@ import { User } from "../components/User";
 import { IRepository, IUser, SearchResultType } from "../interfaces/search";
 import styles from "../styles/Home.module.css";
 
+interface Metadata {
+  totalCount: number;
+  page: number;
+  perPage: number;
+}
+
 const Home: NextPage = () => {
   const [data, setData] = useState<Array<IRepository | IUser>>();
   const [resultCount, setResultCount] = useState<number>(10);
+  const [metadata, setMetadata] = useState<Metadata>();
+  const [query, setQuery] = useState<string>("");
 
   useEffect(() => {
     if (!data) {
-      new Search().search({}).then((res) => setData(res.items));
+      new Search().search({}).then((res) => {
+        setData(res.items);
+        setMetadata(res.metadata);
+      });
     }
   }, [data]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
 
   const displayResults = () => {
     return (
@@ -48,6 +63,7 @@ const Home: NextPage = () => {
             name="query"
             type="text"
             placeholder="Search"
+            onChange={(e) => handleChange(e)}
             required
           />
         </form>
