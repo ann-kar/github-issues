@@ -103,14 +103,14 @@ describe("SearchRoute", () => {
             "page": 1,
             "perPage": 10,
             "query": "",
-            "totalCount": 10,
+            "totalCount": 110363681,
           },
         }
       `);
     });
   });
 
-  test.only("returns correct structures when passing query params", async () => {
+  test("returns correct structures when passing query params", async () => {
     return withRecording(__dirname, "e2e search with query", async () => {
       const { req, res } = createMocks({ query: { query: "michalwarda" } });
       await SearchRoute(req, res);
@@ -154,7 +154,7 @@ describe("SearchRoute", () => {
             "page": 1,
             "perPage": 10,
             "query": "michalwarda",
-            "totalCount": 10,
+            "totalCount": 4,
           },
         }
       `);

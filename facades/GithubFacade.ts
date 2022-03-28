@@ -43,7 +43,7 @@ export class GithubFacade {
         .sort((left, right) => (left.id > right.id ? -1 : 1))
         .slice(0, 10),
       metadata: {
-        totalCount: 10,
+        totalCount: githubRepositories.total_count + githubUsers.total_count,
         ...params,
       },
     };
