@@ -1,16 +1,17 @@
 import fetch from "node-fetch";
 import {
   GithubRepository,
-  GithubSearchResponse,
+  GithubUserSearchResponse,
   GithubSearchUser,
   GithubUser,
+  GithubRepositorySearchResponse,
 } from "../interfaces/github";
 
 export class GithubClient {
   async getUsers(params: {
     perPage: number;
     page: number;
-  }): Promise<GithubSearchResponse> {
+  }): Promise<GithubUserSearchResponse> {
     const { perPage, page } = params;
     const response = await fetch(
       "https://api.github.com/search/users?" +
@@ -20,13 +21,13 @@ export class GithubClient {
           page: page.toString(),
         })
     );
-    return (await response.json()) as GithubSearchResponse;
+    return (await response.json()) as GithubUserSearchResponse;
   }
 
   async getRepositories(params: {
     perPage: number;
     page: number;
-  }): Promise<GithubSearchResponse> {
+  }): Promise<GithubRepositorySearchResponse> {
     const { perPage, page } = params;
     const response = await fetch(
       "https://api.github.com/search/repositories?" +
@@ -36,7 +37,7 @@ export class GithubClient {
           page: page.toString(),
         })
     );
-    return (await response.json()) as GithubSearchResponse;
+    return (await response.json()) as GithubRepositorySearchResponse;
   }
 
   async getUser(id: string): Promise<GithubUser> {
