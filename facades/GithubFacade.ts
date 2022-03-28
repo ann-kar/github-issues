@@ -27,7 +27,7 @@ export class GithubFacade {
     const githubUsers = await this.client.getUsers(params);
     const searchResultUsers: IUser[] = await Promise.all(
       githubUsers.items.map(async (ghUser) => {
-        const userProfile = await this.client.getUser(ghUser.id.toString());
+        const userProfile = await this.client.getUser(ghUser.login);
         return {
           name: userProfile.name,
           id: userProfile.id,

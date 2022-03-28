@@ -16,7 +16,11 @@ export const withRecording = async (
     nock.load(recordingPath);
   } else {
     nock.enableNetConnect();
-    nock.recorder.rec({ dont_print: true, output_objects: true });
+    nock.recorder.rec({
+      dont_print: true,
+      output_objects: true,
+      enable_reqheaders_recording: false,
+    });
   }
   await cb();
   if (recordingExists) {

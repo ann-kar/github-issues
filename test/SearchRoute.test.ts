@@ -19,12 +19,12 @@ describe("SearchRoute", () => {
         Object {
           "items": Array [
             Object {
-              "avatar": "https://avatars.githubusercontent.com/u/35774468?v=4",
-              "id": 35774468,
-              "location": null,
-              "name": null,
-              "type": "User",
-              "username": "25254",
+              "description": "Mobile App Framework powered by React",
+              "id": 25205606,
+              "name": "touchstonejs",
+              "starsCount": 3350,
+              "type": "Repository",
+              "updatedAt": "2022-03-04T14:44:45Z",
             },
             Object {
               "description": "A tiny, lightning fast jQuery-like library for modern browsers.",
@@ -59,14 +59,6 @@ describe("SearchRoute", () => {
               "updatedAt": "2022-03-03T17:15:25Z",
             },
             Object {
-              "description": "Responsive images while we wait for srcset to finish cooking",
-              "id": 11944782,
-              "name": "Imager.js",
-              "starsCount": 3848,
-              "type": "Repository",
-              "updatedAt": "2022-02-28T20:49:06Z",
-            },
-            Object {
               "description": "Simple and Powerful ORM for Go, support mysql,postgres,tidb,sqlite3,mssql,oracle, Moved to https://gitea.com/xorm/xorm",
               "id": 9950667,
               "name": "xorm",
@@ -83,6 +75,14 @@ describe("SearchRoute", () => {
               "updatedAt": "2022-02-24T00:29:44Z",
             },
             Object {
+              "avatar": "https://avatars.githubusercontent.com/u/8683378?v=4",
+              "id": 8683378,
+              "location": "Rio de Janeiro, Brazil",
+              "name": "Gustavo Guanabara",
+              "type": "User",
+              "username": "gustavoguanabara",
+            },
+            Object {
               "description": "CLI for Building & Distributing iOS Apps (.ipa Files)",
               "id": 5992293,
               "name": "shenzhen",
@@ -91,18 +91,69 @@ describe("SearchRoute", () => {
               "updatedAt": "2022-03-03T19:50:35Z",
             },
             Object {
-              "description": "Accelerated panning and zooming for HTML and Canvas",
-              "id": 2377206,
-              "name": "scroller",
-              "starsCount": 3831,
-              "type": "Repository",
-              "updatedAt": "2022-03-04T19:41:02Z",
+              "avatar": "https://avatars.githubusercontent.com/u/5550850?v=4",
+              "id": 5550850,
+              "location": "Massachusetts",
+              "name": "Brad Traversy",
+              "type": "User",
+              "username": "bradtraversy",
             },
           ],
           "metadata": Object {
             "page": 1,
             "perPage": 10,
             "query": "",
+            "totalCount": 10,
+          },
+        }
+      `);
+    });
+  });
+
+  test.only("returns correct structures when passing query params", async () => {
+    return withRecording(__dirname, "e2e search with query", async () => {
+      const { req, res } = createMocks({ query: { query: "michalwarda" } });
+      await SearchRoute(req, res);
+      expect(res._getJSONData()).toMatchInlineSnapshot(`
+        Object {
+          "items": Array [
+            Object {
+              "description": null,
+              "id": 467084925,
+              "name": "michalwarda-task2",
+              "starsCount": 0,
+              "type": "Repository",
+              "updatedAt": "2022-03-07T12:32:10Z",
+            },
+            Object {
+              "description": null,
+              "id": 463940451,
+              "name": "michalwarda-task1",
+              "starsCount": 0,
+              "type": "Repository",
+              "updatedAt": "2022-02-26T18:58:55Z",
+            },
+            Object {
+              "avatar": "https://avatars.githubusercontent.com/u/78908285?v=4",
+              "id": 78908285,
+              "location": null,
+              "name": null,
+              "type": "User",
+              "username": "michalwarda15",
+            },
+            Object {
+              "avatar": "https://avatars.githubusercontent.com/u/8479334?v=4",
+              "id": 8479334,
+              "location": "Warsaw, Poland",
+              "name": "Michał Warda",
+              "type": "User",
+              "username": "michalwarda",
+            },
+          ],
+          "metadata": Object {
+            "page": 1,
+            "perPage": 10,
+            "query": "michalwarda",
             "totalCount": 10,
           },
         }

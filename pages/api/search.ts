@@ -6,7 +6,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const data = await new GithubFacade().search({
-    query: "",
+    query: (req.query.query as string) || "",
     perPage: 10,
     page: 1,
   });
