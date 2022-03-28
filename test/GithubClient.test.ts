@@ -1,4 +1,4 @@
-import { withRecording } from "./withRecording";
+import { withRecording } from "./utils/withRecording";
 import { GithubClient } from "../api/GithubClient";
 
 describe("#getUsers", function () {
