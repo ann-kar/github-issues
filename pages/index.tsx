@@ -32,6 +32,26 @@ const Home: NextPage = () => {
     setQuery(e.target.value);
   };
 
+  const handlePageChange = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    const target = e.target as HTMLButtonElement;
+
+    if (metadata) {
+      const metadataCopy = { ...metadata };
+
+      if (target.id === "prev") {
+        if (metadataCopy.page <= 1) {
+          target.disabled = true;
+        } else {
+          target.disabled = false;
+          metadataCopy.page = metadataCopy.page - 1;
+          setMetadata(metadataCopy);
+        }
+      }
+    }
+  };
+
   const displayResults = () => {
     return (
       data &&
@@ -71,6 +91,22 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <div className={styles.resultsCount}>{resultCount} results</div>
         <div className={styles.resultList}>{displayResults()}</div>
+        <div className={styles.pagination}>
+          <button
+            id="prev"
+            className={styles.paginationBtn}
+            onClick={(e) => handlePageChange(e)}
+          >
+            Prev
+          </button>
+          <button
+            id="next"
+            className={styles.paginationBtn}
+            onClick={(e) => handlePageChange(e)}
+          >
+            Next
+          </button>
+        </div>
       </main>
     </div>
   );
