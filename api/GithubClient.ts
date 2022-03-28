@@ -62,7 +62,7 @@ export class GithubClient {
 
   private static getAuthorizationHeaders() {
     return {
-      Authorization: process.env.GITHUB_TOKEN!,
+      Authorization: `token ${process.env.GITHUB_TOKEN!}`,
     };
   }
 }
