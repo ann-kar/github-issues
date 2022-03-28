@@ -34,7 +34,11 @@ export interface ISearchResponse {
   };
 }
 
-export interface ISearchRequest {}
+export interface ISearchRequest {
+  query?: string;
+  page?: number;
+  perPage?: number;
+}
 
 export interface ISearch {
   search(request: ISearchRequest): Promise<ISearchResponse>;
