@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import { Search } from "../api/search";
 import { IRepository } from "../interfaces/search";
 import styles from "../styles/Home.module.css";
-import { MockSearch } from "../test/mockSearch";
 
 const Home: NextPage = () => {
   const [data, setData] = useState<IRepository[]>();
@@ -11,7 +11,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (!data) {
-      new MockSearch().search({}).then((res) => setData(res.items));
+      new Search().search({}).then((res) => setData(res.items));
     }
   }, [data]);
 
@@ -19,7 +19,7 @@ const Home: NextPage = () => {
     return (
       data &&
       data.map((item: IRepository) => {
-        const dateString = item.updatedAt.toLocaleString("en-UK", {
+          const dateString = new Date(item.updatedAt).toLocaleString("en-UK", {
           weekday: undefined,
           year: "numeric",
           month: "short",
