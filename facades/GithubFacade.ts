@@ -8,6 +8,7 @@ import { GithubClient } from "../api/GithubClient";
 
 export class GithubFacade {
   private readonly client = new GithubClient();
+
   async search(params: {
     perPage: number;
     page: number;

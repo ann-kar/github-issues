@@ -2,7 +2,6 @@ import fetch from "node-fetch";
 import {
   GithubRepository,
   GithubUserSearchResponse,
-  GithubSearchUser,
   GithubUser,
   GithubRepositorySearchResponse,
 } from "../interfaces/github";
@@ -19,7 +18,10 @@ export class GithubClient {
           q: "type:user",
           per_page: perPage.toString(),
           page: page.toString(),
-        })
+        }),
+      {
+        headers: GithubClient.getAuthorizationHeaders(),
+      }
     );
     return (await response.json()) as GithubUserSearchResponse;
   }
@@ -35,20 +37,30 @@ export class GithubClient {
           q: "size:>0",
           per_page: perPage.toString(),
           page: page.toString(),
-        })
+        }),
+      { headers: GithubClient.getAuthorizationHeaders() }
     );
     return (await response.json()) as GithubRepositorySearchResponse;
   }
 
   async getUser(id: string): Promise<GithubUser> {
-    const response = await fetch(`https://api.github.com/users/${id}`);
+    const response = await fetch(`https://api.github.com/users/${id}`, {
+      headers: GithubClient.getAuthorizationHeaders(),
+    });
     return (await response.json()) as GithubUser;
   }
 
   async getRepository(organization: string, repository: string) {
     const response = await fetch(
-      `https://api.github.com/repos/${organization}/${repository}`
+      `https://api.github.com/repos/${organization}/${repository}`,
+      { headers: GithubClient.getAuthorizationHeaders() }
     );
     return (await response.json()) as GithubRepository;
+  }
+
+  private static getAuthorizationHeaders() {
+    return {
+      Authorization: process.env.GITHUB_TOKEN!,
+    };
   }
 }
