@@ -1,7 +1,9 @@
+import Image from "next/image";
+
 import { IRepository } from "../interfaces/search";
 import styles from "../styles/Home.module.css";
-
 import { Stars } from "./Stars";
+import repoIcon from "../assets/repoIcon.svg";
 
 export const Repository = ({item}:{item: IRepository}) => {
   const dateString = new Date(item.updatedAt).toLocaleString("en-UK", {
@@ -14,6 +16,7 @@ export const Repository = ({item}:{item: IRepository}) => {
   return (
     <>
       <div className={styles.listItem}>
+        <Image className={styles.repoIcon} src={repoIcon}/>
         <h2 className={styles.listItemTitle}>{item.name}</h2>
         <p className={styles.listItemDescription}>{item.description || ""}</p>
         <div className={styles.listItemInfo}>

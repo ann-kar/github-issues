@@ -72,9 +72,12 @@
   margin-top: 2.8rem;
 }
 
-.avatarSmall {
+.repoIcon, .avatarSmall {
   width: 48px;
   height: 48px;
+}
+
+.avatarSmall {
   border-radius: 50%;
 }
 
