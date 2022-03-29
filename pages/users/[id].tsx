@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { Header } from "../../components/Header";
+import { Stars } from "../../components/Stars";
 import styles from "../../styles/Home.module.css";
 
 interface IUserDetails {
@@ -24,20 +26,21 @@ const UserPage = () => {
   });
 
   return (
-    <div>
-      {userData && (
-        <>
-          <img className={styles.avatar} src={userData.avatar}></img>
-          <h2 className={styles.title}>{userData.name}</h2>
-          <h2 className={styles.username}>{userData.username}</h2>
-          <div className={styles.userInfo}>
-            <span>{userData.followers}</span>
-            <span>{userData.following}</span>
-            <span>{userData.starsCount}</span>
+    <>
+      <Header/>
+        {userData && (
+          <div className={`${styles.userData} ${styles.container}`}>
+            <img className={styles.avatar} src={userData.avatar}></img>
+            <h2 className={styles.title}>{userData.name}</h2>
+            <h2 className={styles.username}>{userData.username}</h2>
+            <div className={styles.userInfo}>
+              <span>{userData.followers} Followers</span>
+              <span>{userData.following} Following</span>
+              <Stars count={userData.starsCount}/>
+            </div>
           </div>
-        </>
-      )}
-    </div>
+        )}
+    </>
   );
 };
 export default UserPage;
