@@ -1,4 +1,10 @@
-import { ISearch, ISearchRequest, ISearchResponse } from "../interfaces/search";
+import {
+  ISearch,
+  ISearchRequest,
+  ISearchResponse,
+  IUserSearchRequest,
+  IUserSearchResponse,
+} from "../interfaces/search";
 
 export class Search implements ISearch {
   async search(request: ISearchRequest): Promise<ISearchResponse> {
@@ -6,8 +12,13 @@ export class Search implements ISearch {
       "http://localhost:3000/api/search?" +
         new URLSearchParams({
           query: request.query || "",
+          page: request.page?.toString() || "",
+          perPage: request.perPage?.toString() || "",
         })
     );
     return await response.json();
+  }
+  async userSearch(request: IUserSearchRequest): Promise<IUserSearchResponse> {
+    throw new Error("Method not implemented.");
   }
 }
