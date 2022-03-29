@@ -1,29 +1,26 @@
-import Image from "next/image";
-
 import { IRepository } from "../interfaces/search";
 import styles from "../styles/Home.module.css";
 import { Stars } from "./Stars";
-import repoIcon from "../assets/repoIcon.svg";
+import { ListItemTitle } from "./atoms/ListItemTitle";
+import { ListItemDescription } from "./atoms/ListItemDescription";
+import { ListItemInfo } from "./templates/ListItemInfo";
+import { UpdatedOn } from "./atoms/UpdatedOn";
 
-export const Repository = ({item}:{item: IRepository}) => {
-  const dateString = new Date(item.updatedAt).toLocaleString("en-UK", {
-    weekday: undefined,
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-
+export const Repository = ({ item }: { item: IRepository }) => {
   return (
     <>
-      <div className={styles.listItem}>
-        <Image className={styles.repoIcon} src={repoIcon}/>
-        <h2 className={styles.listItemTitle}>{item.name}</h2>
-        <p className={styles.listItemDescription}>{item.description || ""}</p>
-        <div className={styles.listItemInfo}>
-          <Stars count={item.starsCount}/>
+      <div className={styles.listItemLeft}>
+        <img className={styles.listItemIcon} src="/assets/repoIcon.svg"></img>
+      </div>
+      <div className={styles.listItemRight}>
+        <ListItemTitle text={item.name} />
+        <ListItemDescription text={item.description || ""} />
+        <ListItemInfo>
+          <Stars count={item.starsCount} />
           <span>{item.licence || ""}</span>
-          <span>Updated on: {dateString}</span>
-        </div>
+          <span>{item.dominantLanguage || ""}</span>
+          <UpdatedOn date={item.updatedAt}/>
+        </ListItemInfo>
       </div>
     </>
   );

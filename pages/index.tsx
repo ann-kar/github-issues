@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { Search } from "../api/search";
+import { PaginationButton } from "../components/atoms/PaginationButton";
 import { Header } from "../components/Header";
 import { Input } from "../components/Input";
 import { Repository } from "../components/Repository";
@@ -18,7 +19,7 @@ interface Metadata {
 const Home: NextPage = () => {
   const [data, setData] = useState<Array<IRepository | IUser>>();
   const [metadata, setMetadata] = useState<Metadata>();
-  const [query, setQuery] = useState<string>("");
+  const [query, setQuery] = useState<string>("www");
 
   useEffect(() => {
     new Search().search({ query: query }).then((res) => {
@@ -34,21 +35,7 @@ const Home: NextPage = () => {
   const handlePageChange = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    const target = e.target as HTMLButtonElement;
-
-    if (metadata) {
-      const metadataCopy = { ...metadata };
-
-      if (target.id === "prev") {
-        if (metadataCopy.page <= 1) {
-          target.disabled = true;
-        } else {
-          target.disabled = false;
-          metadataCopy.page = metadataCopy.page - 1;
-          setMetadata(metadataCopy);
-        }
-      }
-    }
+    return e.target as HTMLButtonElement;
   };
 
   const displayResults = () => {
@@ -91,20 +78,14 @@ const Home: NextPage = () => {
         )}
         <div className={styles.resultList}>{displayResults()}</div>
         <div className={styles.pagination}>
-          <button
-            id="prev"
-            className={styles.paginationBtn}
-            onClick={(e) => handlePageChange(e)}
-          >
-            Prev
-          </button>
-          <button
-            id="next"
-            className={styles.paginationBtn}
-            onClick={(e) => handlePageChange(e)}
-          >
-            Next
-          </button>
+          <PaginationButton
+            label="previous"
+            handlePageChange={(e) => handlePageChange(e)}
+          />
+          <PaginationButton
+            label="next"
+            handlePageChange={(e) => handlePageChange(e)}
+          />
         </div>
       </main>
     </div>

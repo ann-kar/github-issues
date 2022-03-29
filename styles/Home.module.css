@@ -12,14 +12,12 @@
   border-radius: 0.5rem;
 }
 
-.container {
-  font-family: 'Roboto';
-  font-weight: 500;
-}
-
 .main {
-  width: 80%;
+  width: 70%;
+  max-width: 60rem;
   margin: 0 auto;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
 }
 
 .resultsCount {
@@ -30,40 +28,83 @@
 }
 
 .listItem {
+  padding: 1rem 0;
   border-top: 1px solid var(--gray);
-  border-bottom: 1px solid var(--gray);
-  padding: 1rem;
+  display: flex;
+  line-height: 1.5rem;
+}
+
+.listItemLeft {
+  width: 1.5rem;
+}
+
+.listItemRight {
+  flex: 1;
+}
+
+.listItemIcon {
+  width: 1rem;
+  height: 1rem;
+  margin: 0 0.5rem 1rem 0;
+}
+
+.listItemTitle,
+.listItemSubtitle {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .listItemTitle {
-  font-size: 1rem;
-  line-height: 2rem;
+  font-family: "Segoe UI";
+  font-weight: 600;
   color: var(--blue);
 }
 
-.userData .title {
-  font-size: 1.6rem;
-  line-height: 2rem;
-  margin: 1rem;
-}
-
-.userData .username {
-  font-size: 1.25rem;
-}
-
-.listItemDescription, .username {
+.listItemSubtitle {
   color: var(--gray);
-  font-weight: 700;
   padding-bottom: 1rem;
 }
 
 .listItemInfo {
+  color: var(--gray);
   font-size: 0.75rem;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
 }
 
 .listItemInfo > * {
-  padding: 0.5rem;
+  padding-right: 1rem;
 }
+
+.star {
+  display: flex;
+  align-items: center;
+}
+
+.starIcon {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.25rem;
+}
+
+.pagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationBtn {
+  background: none;
+  color: var(--blue);
+  box-shadow: none;
+  border: none;
+  margin: 1.5rem 1rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+/* SINGLE USER PAGE */
 
 .avatar {
   width: 296px;
@@ -72,9 +113,13 @@
   margin-top: 2.8rem;
 }
 
-.repoIcon, .avatarSmall {
-  width: 48px;
-  height: 48px;
+.listItemData {
+  width: 100%;
+  padding-left: 1rem;
+}
+
+.listItemData > * {
+  width: 100%;
 }
 
 .avatarSmall {
@@ -91,9 +136,4 @@
 
 .userInfo > * {
   padding: 0.5rem;
-}
-
-.starIcon {
-  width: 1rem;
-  height: 1rem;
 }
