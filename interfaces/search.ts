@@ -40,14 +40,14 @@ export interface ISearchRequest {
 
 export interface ISearch {
   search(request: ISearchRequest): Promise<ISearchResponse>;
-  user(request: IUserSearchRequest): Promise<IUserSearchResponse>;
+  user(request: IUserRequest): Promise<IUserResponse>;
 }
 
-export interface IUserSearchRequest {
+export interface IUserRequest {
   userId: number
 }
 
-export interface IUserSearchResponse {
+export interface IUserResponse {
   userId: number,
   avatar: string,
   displayName: string,

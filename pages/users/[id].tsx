@@ -2,13 +2,13 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { Stars } from "../../components/Stars";
-import { IUserSearchResponse } from "../../interfaces/search";
+import { IUserResponse } from "../../interfaces/search";
 import styles from "../../styles/Home.module.css";
 import { MockSearch } from "../../test/mockSearch";
 
 const UserPage = () => {
   const router = useRouter();
-  const [userData, setUserData] = useState<IUserSearchResponse>();
+  const [userData, setUserData] = useState<IUserResponse>();
   useEffect(() => {
     new MockSearch().user({ userId: Number(router.query.id) }).then((res) => {
       setUserData(res);

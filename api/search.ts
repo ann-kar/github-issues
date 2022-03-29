@@ -2,8 +2,8 @@ import {
   ISearch,
   ISearchRequest,
   ISearchResponse,
-  IUserSearchRequest,
-  IUserSearchResponse,
+  IUserRequest,
+  IUserResponse,
 } from "../interfaces/search";
 
 export class Search implements ISearch {
@@ -18,7 +18,7 @@ export class Search implements ISearch {
     );
     return await response.json();
   }
-  async user(request: IUserSearchRequest): Promise<IUserSearchResponse> {
+  async user(request: IUserRequest): Promise<IUserResponse> {
     throw new Error("Method not implemented.");
   }
 }
