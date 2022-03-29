@@ -1,6 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
 
-html,
+html {
+  --gray: #6F7781;
+  --blue: #166CD7;
+  --jupyter: #D85B1F;
+  --lisp: #45B58C;
+  --js: #DFCF60;
+  --php: #505F93;
+  --default: #BDBDBE;
+}
+
 body {
   padding: 0;
   margin: 0;
