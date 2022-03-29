@@ -29,17 +29,18 @@
 }
 
 .listItem {
-  border: 1px solid gray;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
   padding: 1rem;
 }
 
-.listItemTitle {
+.listItemTitle, .title {
   font-size: 1rem;
   line-height: 2rem;
   color: #166CD7;
 }
 
-.listItemDescription {
+.listItemDescription, .username {
   color: #6F7781;
   font-weight: 700;
   padding-bottom: 1rem;
@@ -51,4 +52,20 @@
 
 .listItemInfo * {
   padding: 0.5rem;
+}
+
+.avatar {
+  width: 296px;
+  height: 296px;
+  border-radius: 50%;
+}
+
+.avatarSmall {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.userInfo {
+  background: 'red';
 }

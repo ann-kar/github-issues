@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 
 interface IUserDetails {
   avatar: string;
@@ -13,7 +13,6 @@ interface IUserDetails {
 
 const UserPage = () => {
   const router = useRouter();
-  console.log(router.query.id);
   const [userData, setUserData] = useState<IUserDetails>({
     avatar:
       "https://media.wired.co.uk/photos/60c8730fa81eb7f50b44037e/3:2/w_3329,h_2219,c_limit/1521-WIRED-Cat.jpeg",
@@ -29,9 +28,9 @@ const UserPage = () => {
       {userData && (
         <>
           <img className={styles.avatar} src={userData.avatar}></img>
-          <h2>{userData.name}</h2>
+          <h2 className={styles.title}>{userData.name}</h2>
           <h2 className={styles.username}>{userData.username}</h2>
-          <div>
+          <div className={styles.userInfo}>
             <span>{userData.followers}</span>
             <span>{userData.following}</span>
             <span>{userData.starsCount}</span>
