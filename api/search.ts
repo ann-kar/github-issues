@@ -18,7 +18,7 @@ export class Search implements ISearch {
     );
     return await response.json();
   }
-  async userSearch(request: IUserSearchRequest): Promise<IUserSearchResponse> {
+  async user(request: IUserSearchRequest): Promise<IUserSearchResponse> {
     throw new Error("Method not implemented.");
   }
 }

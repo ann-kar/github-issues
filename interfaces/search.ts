@@ -40,7 +40,7 @@ export interface ISearchRequest {
 
 export interface ISearch {
   search(request: ISearchRequest): Promise<ISearchResponse>;
-  userSearch(request: IUserSearchRequest): Promise<IUserSearchResponse>;
+  user(request: IUserSearchRequest): Promise<IUserSearchResponse>;
 }
 
 export interface IUserSearchRequest {
