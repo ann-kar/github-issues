@@ -1,5 +1,3 @@
-import { ServerStreamFileResponseOptionsWithError } from "http2";
-
 export enum SearchResultType {
   User = "User",
   Repository = "Repository",
@@ -42,4 +40,19 @@ export interface ISearchRequest {
 
 export interface ISearch {
   search(request: ISearchRequest): Promise<ISearchResponse>;
+  userSearch(request: IUserSearchRequest): Promise<IUserSearchResponse>;
+}
+
+export interface IUserSearchRequest {
+  userId: number
+}
+
+export interface IUserSearchResponse {
+  userId: number,
+  avatar: string,
+  displayName: string,
+  username: string,
+  followers: number,
+  following: number,
+  starsCount: number,
 }
