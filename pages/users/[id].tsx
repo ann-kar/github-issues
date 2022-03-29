@@ -13,22 +13,22 @@ const UserPage = () => {
     new MockSearch().user({ userId: Number(router.query.id) }).then((res) => {
       setUserData(res);
     });
-  })
+  });
   return (
     <>
-      <Header/>
-        {userData && (
-          <div className={`${styles.userData} ${styles.container}`}>
-            <img className={styles.avatar} src={userData.avatar}></img>
-            <h2 className={styles.title}>{userData.displayName}</h2>
-            <h2 className={styles.username}>{userData.username}</h2>
-            <div className={styles.userInfo}>
-              <span>{userData.followers} Followers</span>
-              <span>{userData.following} Following</span>
-              <Stars count={userData.starsCount}/>
-            </div>
+      <Header />
+      {userData && (
+        <div className={`${styles.userData}`}>
+          <img className={styles.avatar} src={userData.avatar}></img>
+          <h2 className={styles.displayName}>{userData.displayName}</h2>
+          <h2 className={styles.username}>{userData.username}</h2>
+          <div className={styles.userInfo}>
+            <span>{userData.followers} Followers</span>
+            <span>{userData.following} Following</span>
+            <Stars count={userData.starsCount} />
           </div>
-        )}
+        </div>
+      )}
     </>
   );
 };
